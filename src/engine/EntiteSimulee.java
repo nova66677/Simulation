@@ -5,24 +5,26 @@ abstract public class EntiteSimulee implements Comparable <EntiteSimulee> {
     protected String name;
     protected SimEvent event;
 
-    public EntiteSimulee(SimuEngine engine, String name ) {
+    public EntiteSimulee(SimuEngine engine, String name, SimEvent event ) {
         this.engine = engine;
         this.name = name;
-        this.event = null;
+        this.event = event;
+        this.notifyEngine();
+        this.addEvent(this.event);
+    }
+
+    public void notifyEngine() {
+        this.engine.addEntity(this);
     }
 
     public int compareTo(EntiteSimulee other) {
         return this.name.compareTo(other.name);
     }
 
-    protected int addEvent(SimEvent ev ) {
+    protected void addEvent(SimEvent ev ) {
         // On attribue a l'entite un evenement SImEvent et on check si l'attribution a fonctionné
         this.event = ev;
-        if (this.event != null) {
-            return 0;
-        } else {
-            return 1;
-        }
+        this.addEvent2Engine(this.event);
     }
 
     protected void addEvent2Engine(SimEvent ev) {
