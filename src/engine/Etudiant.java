@@ -14,6 +14,7 @@ public class Etudiant extends EntiteSimulee {
     }
 
     private void sayHello() {
+        // Cette version effectue un test sur les entités du Moteur
         System.out.println("Hello !");
         for (Etudiant et : this.engine.L_entities) {
             if (et.film_pref.equals(this.film_pref)) {
